@@ -1,0 +1,10 @@
+[
+  {
+    "timestamp": 5,
+    "devicename": "Blind1",
+    "info": {
+      "current_position": 100,
+      "status": "Active"
+    }
+  }
+]
