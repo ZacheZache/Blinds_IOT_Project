@@ -1,0 +1,46 @@
+Standup 12 feb
+	Protokollförare: Zacharias
+	Deltagare:
+		Zacharias
+		David
+		Kim
+	
+	Startup med att göra ärenden till backloggen
+	Starta sprint
+	
+	Till nästa gång
+		David, Zache, Kim:
+			Slutföra ZDK-9
+
+Standup 15 feb
+	Protokollförare: Zacharias
+	Deltagare:
+		Zacharias
+		David
+		Kim
+
+	Sedan sist:
+		David, Zache, Kim:
+			Klar med ed ZDK-9
+		
+	Till nästa gång:
+		David, Zache, Kim:
+			Fortsätta studera node-red, för att göra
+			val om projektet som vi börjar på nästa sprint.
+			(Detta var en test-sprint)
+
+Standup 16 feb
+	Protokollförare: Zacharias
+	Deltagare:
+		Zacharias
+		David
+		Kim
+
+	Till nästa gång:
+		David:
+			ZDK-10
+		Kim:
+			ZDK-11
+		Zache:
+			ZDK-4
+			ZDK-8
