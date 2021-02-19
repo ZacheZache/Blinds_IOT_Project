@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slaughter Dashboard</title>
+</head>
+<body>
+<h1>DASHBOARD</h1>
+<a href="/">Main page</a> <br/>
+<bt/>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Device name</th>
+            <th>Position</th>
+            <th>Status</th>
+        </tr>
+        {% for device in devices %}
+            <tr>
+                <td>{{ device['timestamp'] }}</td>
+                <td>{{ device['devicename'] }}</td>
+                <td>{{ device['info']['position'] }}</td>
+                <td>{{ device['info']['status'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

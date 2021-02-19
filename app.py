@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import dynamodb
+import dynamo_sensor_db
 
 app = Flask(__name__)
 
@@ -8,10 +8,10 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/users')
-def get_users():
-    users = dynamodb.get_all_users()
-    return render_template('users.html', users=users)
+@app.route("/dashboard")
+def get_dashboard():
+    devices = dynamo_sensor_db.get_all_devices()
+    return render_template('dashboard.html', devices=devices)
 
 
 if __name__ == '__main__':

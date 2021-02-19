@@ -2,7 +2,10 @@ import dynamo_sensor_db
 import json
 
 def main():
-    dynamo_sensor_db.store_device_entry('Blind1', '100', 'Active')
+    devices = dynamo_sensor_db.get_all_devices()
+
+    for device in devices:
+        print(device)
 
 
 if __name__ == '__main__':

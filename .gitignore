@@ -1,1 +1,3 @@
 certs.txt
+venv/
+.idea/
