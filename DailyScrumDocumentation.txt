@@ -21,7 +21,7 @@ Standup 15 feb
 
 	Sedan sist:
 		David, Zache, Kim:
-			Klar med ed ZDK-9
+			Klar med ZDK-9
 		
 	Till nästa gång:
 		David, Zache, Kim:
@@ -44,3 +44,26 @@ Standup 16 feb
 		Zache:
 			ZDK-4
 			ZDK-8
+
+Standup 19 feb
+    	Protokollförare: Zacharias
+	Deltagare:
+		Zacharias
+		David
+		Kim
+
+	Sedan sist:
+		David:
+			Klar med ZDK-10
+		Zache:
+		    Klar med ZDK-4
+		    Klar med ZDK-8
+		Kim:
+			Klar med ZDK-11
+
+	Till nästa gång:
+		David:
+		Zache:
+		Kim:
+		    ZDK-12
+
