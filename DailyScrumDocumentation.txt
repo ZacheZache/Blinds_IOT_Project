@@ -1,9 +1,7 @@
 Standup 12 feb
 	Protokollförare: Zacharias
 	Deltagare:
-		Zacharias
-		David
-		Kim
+		Zacharias, David, Kim
 	
 	Startup med att göra ärenden till backloggen
 	Starta sprint
@@ -15,9 +13,7 @@ Standup 12 feb
 Standup 15 feb
 	Protokollförare: Zacharias
 	Deltagare:
-		Zacharias
-		David
-		Kim
+		Zacharias, David, Kim
 
 	Sedan sist:
 		David, Zache, Kim:
@@ -32,9 +28,7 @@ Standup 15 feb
 Standup 16 feb
 	Protokollförare: Zacharias
 	Deltagare:
-		Zacharias
-		David
-		Kim
+		Zacharias, David, Kim
 
 	Till nästa gång:
 		David:
@@ -46,11 +40,9 @@ Standup 16 feb
 			ZDK-8
 
 Standup 19 feb
-    	Protokollförare: Zacharias
+    Protokollförare: Zacharias
 	Deltagare:
-		Zacharias
-		David
-		Kim
+		Zacharias, David, Kim
 
 	Sedan sist:
 		David:
@@ -63,7 +55,66 @@ Standup 19 feb
 
 	Till nästa gång:
 		David:
+            ZDK-13
 		Zache:
+            ZDK-14
 		Kim:
 		    ZDK-12
+
+Standup 23 feb
+    Protokollförare: Zacharias
+	Deltagare:
+		Zacharias, David, Kim
+
+    Sedan sist:
+		David:
+			Klar med ZDK-13
+		Zache:
+		    Klar med ZDK-14
+		Kim:
+			Klar med ZDK-12
+
+Sprint rewiew 23 feb
+    Protokollförare: Zacharias
+    Deltagare:
+		Zacharias, David, Kim
+
+    *Alla punkter klara.
+    *Svårt att dela upp arbetet eftersom:
+        Projektet behöver förlja en viss ordning
+        Inte så många självgående delar
+        Relativt litet projekt
+    *Svårt att följa scrum i ett litet team med 3 personer när
+    vi sitter och arbetar tillsammans.
+    *Det har kommit upp nya punkter i backloggen:
+        Finsjusteringar och fortsättning på de tidigare punkterna
+
+    Vad vi kan göra bättre nästa sprint:
+        Dokumentera daily standup
+
+-------- Sprint 4 --------
+
+Standup 12 feb
+    Protokollförare: Zacharias
+	Deltagare:
+		Zacharias, David, Kim
+
+	Göra ärenden till backloggen
+	Starta sprint
+
+	Till nästa gång
+		David:
+		    ZDK-19
+		    ZDK-20
+		Zache:
+		    ZDK-16
+		    ZDK-22
+		    ZDK-23
+		Kim:
+		    ZDK-15
+		    ZDK-18
+
+
+
+
 
