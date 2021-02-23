@@ -79,13 +79,13 @@ def get_device_by_name(name, dynamodb=None):
         return response['Items']
 
 
-def store_device_entry(name, position, currentStatus, dynamodb=None):
+def store_device_entry(tableName, name, position, currentStatus, dynamodb=None):
     if not dynamodb:
         dynamodb = get_resource()
 
         timeStamp = decimal.Decimal(time.time())
 
-    table = dynamodb.Table('Devices')
+    table = dynamodb.Table(tableName)
 
     response = table.put_item(Item={
             'timestamp': timeStamp,
@@ -99,11 +99,11 @@ def store_device_entry(name, position, currentStatus, dynamodb=None):
     return response
 
 
-def get_all_devices(dynamodb=None):
+def get_all_devices(tableName, dynamodb=None):
     if not dynamodb:
         dynamodb = get_resource()
 
-    table = dynamodb.Table('Devices')
+    table = dynamodb.Table(tableName)
 
     try:
         response = table.scan()

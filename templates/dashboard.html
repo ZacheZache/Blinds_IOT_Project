@@ -12,25 +12,8 @@
 <h1>DASHBOARD</h1>
 <a href="/">Main page</a> <br/>
 <br/>
-<canvas id="myChart" width="400" height="400"></canvas>
 <br/>
 <br/>
-    <table>
-        <tr>
-            <th>Timestamp</th>
-            <th>Device name</th>
-            <th>Position</th>
-            <th>Status</th>
-        </tr>
-        {% for device in devices %}
-            <tr>
-                <td>{{ device['timestamp'] }}</td>
-                <td>{{ device['devicename'] }}</td>
-                <td>{{ device['info']['position'] }}</td>
-                <td>{{ device['info']['status'] }}</td>
-            </tr>
-        {% endfor %}
-    </table>
 
 </body>
 </html>

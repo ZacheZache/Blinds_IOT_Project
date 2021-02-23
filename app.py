@@ -23,7 +23,9 @@ def index():
 
 @app.route("/dashboard")
 def get_dashboard():
-    devices = dynamo_sensor_db.get_all_devices()
+    devices = dynamo_sensor_db.get_all_devices('temp_data_test')
+    for device in devices:
+        print(device)
     return render_template('dashboard.html', devices=devices)
 
 
