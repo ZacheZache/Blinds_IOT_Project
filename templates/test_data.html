@@ -8,7 +8,8 @@
 
 <body>
   <center>
-    <h1>Device {{ devices }} - {{ data_description }}</h1>
+      <!--ENVIRONMENT DATA-->
+    <h1>Sun azimuth</h1>
 
     <canvas id="chart" width="600" height="400"></canvas>
     <script>
@@ -68,7 +69,8 @@
     </script>
   </center>
 <center>
-<h1>Device {{ devices }}</h1>
+    <!--DEVICE-->
+<h1>Blind positions</h1>
 
     <canvas id="device_chart" width="600" height="400"></canvas>
     <script>
@@ -126,6 +128,33 @@
       });
 
     </script>
+    <br/>
+    <h1>Manual Blind Controls</h1>
+    <h3>Enter the position for the blinds:</h3>
+    <form action="http://127.0.0.1:1880/test_data" method="post">
+        <input type="number" name="manual_override" value=0>
+        <button>Fully Closed</button>
+    </form>
+
+    <form action="http://localhost:1880/test_data" method="post">
+        <input type="number" name="manual_override" value=25>
+        <button>25%</button>
+    </form>
+
+    <form action="http://localhost:1880/test_data" method="post">
+        <input type="number" name="manual_override" value=50>
+        <button>50%</button>
+    </form>
+
+    <form action="http://localhost:1880/test_data" method="post">
+        <input type="number" name="manual_override" value=75>
+        <button>75%</button>
+    </form>
+
+    <form action="http://localhost:1880/test_data" method="post">
+        <input type="number" name="manual_override" value=100>
+        <button>Fully Open</button>
+    </form>
   </center>
 </body>
 </html>

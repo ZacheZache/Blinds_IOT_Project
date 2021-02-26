@@ -34,8 +34,10 @@ def get_dashboard():
 def test_data():
     entries = dynamo_sensor_db.get_all_devices('enviroment_data')
     device_data = dynamo_sensor_db.get_all_devices('device_data')
-    devicelist = sorted(device_data, key=lambda k: k['Id'])
-    newlist = sorted(entries, key=lambda k: k['Id'])
+    device_list = sorted(device_data, key=lambda k: k['Id'])
+    new_list = sorted(entries, key=lambda k: k['Id'])
+    newlist = new_list[-10:]
+    devicelist = device_list[-10:]
     azimuth_values = []
     date_values = []
     blind_positions = []
