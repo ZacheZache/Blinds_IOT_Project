@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>{{ title }}</title>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js'></script>
 </head>
 
 <body>
-  <center>
-      <br/>
-      <h1>Manual Blind Controls</h1>
+<center>
+    <br/>
+    <h1>Manual Blind Controls</h1>
     <h3>Enter the position for the blinds:</h3>
     <form action="http://127.0.0.1:1880/test_data" method="post">
         <input type="number" name="manual_override" value=0>
@@ -35,133 +35,102 @@
         <input type="number" name="manual_override" value=100>
         <button>Fully Open</button>
     </form>
-      <br/>
-      <center>
-    <!--DEVICE-->
-<h1>Blind positions</h1>
+    <br/>
+    <center>
+        <!--DEVICE-->
+        <h1>Blind positions</h1>
+        <canvas id="canvas" width="900" height="400"></canvas>
 
-    <canvas id="device_chart" width="600" height="400"></canvas>
-    <script>
 
-      // bar chart data
-      var barData = {
+        <br/>
+        <!--ENVIRONMENT DATA-->
+        <h1>Sun azimuth</h1>
+
+        <canvas id="chart" width="900" height="400"></canvas>
+    </center>
+
+    <br/>
+
+</center>
+<script>
+          var blindChartData = {
         labels : [
           {% for item in blind_dates %}
             "{{ item }}",
           {% endfor %}
         ],
-
-        datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          label: 'HELLO',
-          data : [
+        datasets : [
+            {
+                type: 'line',
+                label: "Blind",
+                backgroundColor: 'rgba(151,249,190,0.5)',
+                borderColor: 'rgba(151,249,190,1)',
+                borderWidth: 1,
+                data : [
 	    {% for item in blindpositions %}
               {{ item }},
             {% endfor %}]
           }
 	]
-      }
+    }
 
-      Chart.defaults.global.animationSteps = 50;
-      Chart.defaults.global.tooltipYPadding = 16;
-      Chart.defaults.global.tooltipCornerRadius = 0;
-      Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-      Chart.defaults.global.animationEasing = "easeOutBounce";
-      Chart.defaults.global.responsive = false;
-      Chart.defaults.global.scaleLineColor = "black";
-      Chart.defaults.global.scaleFontSize = 16;
-
-      // get bar chart canvas
-      var mychart = document.getElementById("device_chart").getContext("2d");
-
-      steps = 10
-      max = {{ blind_max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: true,
-      });
-
-    </script>
-          <br/>
-      <!--ENVIRONMENT DATA-->
-    <h1>Sun azimuth</h1>
-
-    <canvas id="chart" width="600" height="400"></canvas>
-    <script>
-
-      // bar chart data
-      var barData = {
+    var lineChartData = {
         labels : [
           {% for item in times %}
             "{{ item }}",
           {% endfor %}
         ],
-
-        datasets : [{
-          label: "Azimuth",
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          data : [
-	    {% for item in positions %}
-              {{ item }},
+        datasets : [
+            {
+                type: 'line',
+                label: "Azimuth",
+                backgroundColor: 'rgba(0,100,255,0.5)',
+                borderColor: 'rgba(0,100,255,1)',
+                borderWidth: 1,
+                data : [
+	    {% for pos in positions %}
+              {{ pos }},
+            {% endfor %}]
+          },
+          {
+                type: 'line',
+                label: "Sun in window",
+                backgroundColor: 'rgba(255,255,0,0.01)',
+                borderColor: 'rgba(255,255,0,1)',
+                borderWidth: 1,
+                data : [
+	    {% for sun in sun_status %}
+              {{ sun }},
             {% endfor %}]
           }
 	]
-      }
+    }
 
-      Chart.defaults.global.animationSteps = 50;
-      Chart.defaults.global.tooltipYPadding = 16;
-      Chart.defaults.global.tooltipCornerRadius = 0;
-      Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-      Chart.defaults.global.animationEasing = "easeOutBounce";
-      Chart.defaults.global.responsive = false;
-      Chart.defaults.global.scaleLineColor = "black";
-      Chart.defaults.global.scaleFontSize = 16;
+    window.onload = function() {
+    var ctx = document.getElementById('canvas').getContext('2d');
+    window.myBar = new Chart(ctx, {
+        type: 'line',
+        data: blindChartData,
+        options: {
+            responsive: false,
+            legend: {
+                position: 'top',
+            }
+        }
+    });
 
-      // get bar chart canvas
-      var mychart = document.getElementById("chart").getContext("2d");
-
-      steps = 10
-      max = {{ max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: true,
-      });
-
-    </script>
-  </center>
-
-    <br/>
-
-  </center>
+    var ctx2 = document.getElementById('chart').getContext('2d');
+    window.myBar = new Chart(ctx2, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            responsive: false,
+            legend: {
+                position: 'top',
+            }
+        }
+    });
+};
+</script>
 </body>
 </html>
