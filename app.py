@@ -1,6 +1,5 @@
-from flask import Flask, Markup, render_template
+from flask import Flask, render_template
 import dynamo_sensor_db
-import json
 
 app = Flask(__name__)
 
@@ -34,6 +33,7 @@ def get_dashboard():
 def test_data():
     entries = dynamo_sensor_db.get_all_devices('enviroment_data')
     device_data = dynamo_sensor_db.get_all_devices('device_data')
+
     device_list = sorted(device_data, key=lambda k: k['Id'])
     new_list = sorted(entries, key=lambda k: k['Id'])
     newlist = new_list[-10:]
@@ -42,6 +42,7 @@ def test_data():
     date_values = []
     blind_positions = []
     device_dates = []
+    sun_in_win = []
 
     for pos in devicelist:
         newpos = pos['blind_position']
@@ -54,6 +55,12 @@ def test_data():
     for date in newlist:
         time = date['date']
         date_values.append(time)
+        sunStatus = date['sunInWin']
+        if sunStatus:
+            sun_in_win.append(360)
+        else:
+            sun_in_win.append(0)
+
 
     for az in newlist:
         azimuth = az['azimuth']
@@ -64,7 +71,7 @@ def test_data():
 
     return render_template('test_data.html', max=360, blind_max=100, blindpositions=blind_positions,
                            blind_dates=device_dates, positions=azimuth_values, data_description=device_name,
-                           times=date_values, devices=device_values, title='DEVICE DATA')
+                           times=date_values, devices=device_values, sun_status=sun_in_win, title='DEVICE DATA')
 
 
 if __name__ == '__main__':
