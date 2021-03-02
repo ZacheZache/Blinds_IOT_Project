@@ -2,3 +2,4 @@ certs.txt
 venv/
 .idea/
 .idea\
+.idea/misc.xml
