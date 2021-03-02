@@ -114,6 +114,33 @@ Standup 12 feb
 		    ZDK-15
 		    ZDK-18
 
+Standup 2 mars
+    Protokollförare: Zacharias
+    Deltagare:
+        Zachrias, David, Kim
+
+    	Sedan sist:
+		David:
+			Klar med ZDK-19
+			Klar med ZDK-20
+		Zache:
+		    Klar med ZDK-16
+		    Klar med ZDK-22
+		    Klar med ZDK-23
+		Kim:
+			Klar med ZDK-15
+			Klar med ZDK-18
+
+-------- Sprint 5 --------
+
+	Till nästa gång:
+		David:
+            ZDK-
+		Zache:
+            ZDK-
+		Kim:
+		    ZDK-
+
 
 
 
