@@ -63,6 +63,7 @@
             {
                 type: 'line',
                 label: "Blind",
+                lineTension: 0.0,
                 backgroundColor: 'rgba(151,249,190,0.5)',
                 borderColor: 'rgba(151,249,190,1)',
                 borderWidth: 1,
@@ -113,6 +114,16 @@
         data: blindChartData,
         options: {
             responsive: false,
+            scales: {
+      yAxes: [{
+        ticks: {
+          max: 100,
+          min: 0,
+          reverse: false,
+          stepSize: 25
+        },
+      }]
+    },
             legend: {
                 position: 'top',
             }
@@ -125,6 +136,16 @@
         data: lineChartData,
         options: {
             responsive: false,
+            scales: {
+      yAxes: [{
+        ticks: {
+          max: 360,
+          min: 0,
+          reverse: false,
+          stepSize: 20
+        },
+      }]
+    },
             legend: {
                 position: 'top',
             }
