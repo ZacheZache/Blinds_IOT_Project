@@ -6,11 +6,133 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(function(){
+    window.setInterval(function(){
+    loadNewDecimal()
+    }, 1000
+
+    function entries(){
+    $.ajax({
+    url:"/test_data_david",
+    type: "POST",
+    dataType: "json",
+    sucess: function(data) {
+    $(entries).replaceWith(data)
+    }
+    }};
+    }
+</script>
+
+<body>
+
+
+<style>
+h1 {
+  color: black;
+  text-align: center;
+  font-size: 25px;
+  font-family: sans-serif;
+  //text-transform: uppercase;
+  //border-style: solid;
+  //border-width: medium;
+  //border-color: white;
+  }
+  h2 {
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  font-family: sans-serif;
+  //text-transform: uppercase;
+  //border-style: solid;
+  //border-width: medium;
+  //border-color: white;
+  }
+
+  body{
+  background-color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  }
+ h4 {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: -4px 4px #ef3550,
+               -8px 8px #f48fb1,
+               -12px 12px #7e57c2,
+               -16px 16px #2196f3,
+               -20px 20px #26c6da,
+               -24px 24px #43a047,
+               -28px 28px #eeff41,
+               -32px 32px #f9a825,
+               -36px 36px #ff5722;
+}
+<style>
+/* customizable snowflake styling */
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
+</style>
+<div class="snowflakes" aria-hidden="true">
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+    ❅
+  </div>
+  <div class="snowflake">
+    ❆
+  </div>
+  <div class="snowflake">
+    ❅
+  </div>
+  <div class="snowflake">
+    ❆
+  </div>
+  <div class="snowflake">
+    ❅
+  </div>
+  <div class="snowflake">
+    ❆
+  </div>
+</div>
+  </body>
+
 <body>
   <center>
+      <div class="jumbotron">
+          <h4>Dashboard</h4>
       <br/>
       <h1>Manual Blind Controls</h1>
-    <h3>Enter the position for the blinds:</h3>
+    <h2>Enter the position for the blinds:</h2>
     <form action="http://127.0.0.1:1880/test_data" method="post">
         <input type="number" name="manual_override" value=0>
         <button>Fully Closed</button>
@@ -27,7 +149,7 @@
     </form>
 
     <form action="http://localhost:1880/test_data" method="post">
-        <input type="number" name="manual_override" value=75>
+        <input name="manual_override" value=75>
         <button>75%</button>
     </form>
 
@@ -72,7 +194,7 @@
       Chart.defaults.global.tooltipYPadding = 16;
       Chart.defaults.global.tooltipCornerRadius = 0;
       Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.30)";
       Chart.defaults.global.animationEasing = "easeOutBounce";
       Chart.defaults.global.responsive = false;
       Chart.defaults.global.scaleLineColor = "black";
@@ -81,7 +203,7 @@
       // get bar chart canvas
       var mychart = document.getElementById("device_chart").getContext("2d");
 
-      steps = 10
+      steps = 4
       max = {{ blind_max }}
       // draw bar chart
       var LineChartDemo = new Chart(mychart).Line(barData, {
@@ -133,7 +255,7 @@
       Chart.defaults.global.tooltipYPadding = 16;
       Chart.defaults.global.tooltipCornerRadius = 0;
       Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.30)";
       Chart.defaults.global.animationEasing = "easeOutBounce";
       Chart.defaults.global.responsive = false;
       Chart.defaults.global.scaleLineColor = "black";
@@ -161,7 +283,6 @@
   </center>
 
     <br/>
-
   </center>
 </body>
 </html>

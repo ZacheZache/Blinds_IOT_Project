@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+import numpy as np
+from flask import Flask, render_template, jsonify
 import dynamo_sensor_db
 
 app = Flask(__name__)
@@ -15,6 +16,19 @@ times = [
     1, 2, 3, 4, 5, 6, 7
 ]
 
+random_decimal = np.random.rand()
+
+@app.route('/updated_ajax', methods=['POST'])
+def updateddecimal():
+    random_decimal = np.random.rand()
+    return jsonify('', render_template('random_decimal_model.html', x=random_decimal))
+
+
+@app.route('/ajax')
+def ajax():
+    return render_template('ajax.html', x=random_decimal)
+
+
 
 @app.route('/')
 def index():
@@ -29,7 +43,7 @@ def get_dashboard():
     return render_template('dashboard.html', devices=devices)
 
 
-@app.route("/test_data")
+@app.route("/test_data_david")
 def test_data():
     entries = dynamo_sensor_db.get_all_devices('enviroment_data')
     device_data = dynamo_sensor_db.get_all_devices('device_data')
@@ -69,7 +83,7 @@ def test_data():
     device_values = newlist[0]['device_id']
     device_name = newlist[0]['device_name']
 
-    return render_template('test_data.html', max=360, blind_max=100, blindpositions=blind_positions,
+    return render_template('test_data_david.html', max=360, blind_max=100, blindpositions=blind_positions,
                            blind_dates=device_dates, positions=azimuth_values, data_description=device_name,
                            times=date_values, devices=device_values, sun_status=sun_in_win, title='DEVICE DATA')
 
