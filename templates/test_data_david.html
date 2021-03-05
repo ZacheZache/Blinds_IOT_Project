@@ -3,29 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <title>{{ title }}</title>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
-    $(function(){
-    window.setInterval(function(){
-    loadNewDecimal()
-    }, 1000
 
-    function entries(){
-    $.ajax({
-    url:"/test_data_david",
-    type: "POST",
-    dataType: "json",
-    sucess: function(data) {
-    $(entries).replaceWith(data)
-    }
-    }};
-    }
-</script>
-
+<!--
 <body>
 
 
@@ -125,11 +109,13 @@ h1 {
   </div>
 </div>
   </body>
+  -->
 
 <body>
   <center>
       <div class="jumbotron">
           <h4>Dashboard</h4>
+      </div>
       <br/>
       <h1>Manual Blind Controls</h1>
     <h2>Enter the position for the blinds:</h2>
@@ -163,10 +149,12 @@ h1 {
 <h1>Blind positions</h1>
 
     <canvas id="device_chart" width="600" height="400"></canvas>
+
     <script>
 
+
       // bar chart data
-      var barData = {
+      var blindData = {
         labels : [
           {% for item in blind_dates %}
             "{{ item }}",
@@ -174,14 +162,9 @@ h1 {
         ],
 
         datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          label: 'HELLO',
+          type: 'line',
+          label: 'Blind',
+          lineTension: 0.0,
           data : [
 	    {% for item in blindpositions %}
               {{ item }},
@@ -190,33 +173,84 @@ h1 {
 	]
       }
 
-      Chart.defaults.global.animationSteps = 50;
-      Chart.defaults.global.tooltipYPadding = 16;
-      Chart.defaults.global.tooltipCornerRadius = 0;
-      Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.30)";
-      Chart.defaults.global.animationEasing = "easeOutBounce";
-      Chart.defaults.global.responsive = false;
-      Chart.defaults.global.scaleLineColor = "black";
-      Chart.defaults.global.scaleFontSize = 16;
-
       // get bar chart canvas
-      var mychart = document.getElementById("device_chart").getContext("2d");
+      window.onload = function() {
+        var mychart = document.getElementById("device_chart").getContext("2d");
+        window.myBar = new Chart(mychart, {
+            type: 'line',
+            data: blindData,
+            options: {
+                responsive: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            max: 100,
+                            min: 0,
+                            reverse: false,
+                            stepSize: 25
+                        },
+                    }]
+                },
+                legend: {
+                    position: 'top'
+                }
+            }
+        });
+      }
 
-      steps = 4
-      max = {{ blind_max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: true,
-      });
+
+
+           window.setInterval(function(){
+           $.ajax({
+                url:"/updated_data",
+                type: "GET",
+                dataType: "json",
+                success: function(data){
+                var arr = data.split('~');
+                var pos = arr[0].replaceAll('Decimal(&#39;', '').replaceAll('&#39;)', '').replaceAll('[', '').replaceAll(']', '').replaceAll(' ', '');
+                var nums = pos.split(',');
+
+                var dates = arr[1].replaceAll('&#39;', '').replace('&#39;)', '').replaceAll('[', '').replaceAll(']', '').replace(/\n/ig, '');
+                var dateArr = dates.split(',');
+                console.log(dateArr);
+                    var blindData = {
+                        labels : [
+                            dateArr[0],
+                            dateArr[1],
+                            dateArr[2],
+                            dateArr[3],
+                            dateArr[4],
+                            dateArr[5],
+                            dateArr[6],
+                            dateArr[7],
+                            dateArr[8],
+                            dateArr[9]
+                        ],
+                        datasets : [{
+                            type: 'line',
+                            label: 'Blind position',
+                            lineTension: 0.0,
+                            data : [
+                                Number(nums[0]),
+                                Number(nums[1]),
+                                Number(nums[2]),
+                                Number(nums[3]),
+                                Number(nums[4]),
+                                Number(nums[5]),
+                                Number(nums[6]),
+                                Number(nums[7]),
+                                Number(nums[8]),
+                                Number(nums[9])
+                            ]
+                            }
+	                    ]
+                    }
+                window.myBar.data = blindData;
+                window.myBar.update();
+                }
+           });
+        }, 2000);
+
 
     </script>
           <br/>
