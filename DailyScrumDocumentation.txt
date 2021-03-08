@@ -135,11 +135,43 @@ Standup 2 mars
 
 	Till nästa gång:
 		David:
-            ZDK-
+            ZDK-28
+            ZDK-29
 		Zache:
-            ZDK-
+            ZDK-31
+            ZDK-27
+            ZDK-30
 		Kim:
-		    ZDK-
+		    ZDK-24
+		    ZDK-33
+		    ZDK-25
+
+Standup 8 mars
+    Protokollförare: Zacharias
+    Deltagare:
+        Zachrias, David, Kim
+
+    	Sedan sist:
+		David:
+			Klar med ZDK-28
+			Klar med ZDK-29
+		Zache:
+		    Klar med ZDK-31
+		    Klar med ZDK-27
+		    Klar med ZDK-32
+		    Ej klar med ZDK-30
+		Kim:
+			Klar med ZDK-24
+			Klar med ZDK-33
+			Klar med ZDK-25
+
+		Till nästa gång:
+		Zache, David, Kim:
+		    ZDK-30
+		    ZDK-17
+		    Avsluta projekt :)
+
+
 
 
 
