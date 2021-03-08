@@ -86,15 +86,9 @@ def index():
     return render_template('index.html')
 
 
+
+
 @app.route("/dashboard")
-def get_dashboard():
-    devices = dynamo_sensor_db.get_all_devices('temp_data_test')
-    for device in devices:
-        print(device)
-    return render_template('dashboard.html', devices=devices)
-
-
-@app.route("/test_data_david")
 def test_data():
     entries = dynamo_sensor_db.get_all_devices('enviroment_data')
     device_data = dynamo_sensor_db.get_all_devices('device_data')
@@ -134,7 +128,7 @@ def test_data():
     device_values = newlist[0]['device_id']
     device_name = newlist[0]['device_name']
 
-    return render_template('test_data_david.html', max=360, blind_max=100, blindpositions=blind_positions,
+    return render_template('dashboard.html', max=360, blind_max=100, blindpositions=blind_positions,
                            blind_dates=device_dates, positions=azimuth_values, data_description=device_name,
                            times=date_values, devices=device_values, sun_status=sun_in_win, title='DEVICE DATA')
 
