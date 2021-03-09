@@ -168,8 +168,18 @@ Standup 8 mars
 		Till nästa gång:
 		Zache, David, Kim:
 		    ZDK-30
-		    ZDK-17
 		    Avsluta projekt :)
+
+Standup 8 mars
+    Protokollförare: Zacharias
+    Deltagare:
+        Zachrias, David, Kim
+
+    	Sedan sist:
+		Zache, David, Kim:
+		    Klar med ZDK-30
+
+    Finlir och puts, KLAR med sprint 5 och PROJEKT!
 
 
 
