@@ -326,6 +326,82 @@ h1 {
         }, 2000);
 
 
+        //Sun graph
+        window.setInterval(function(){
+           $.ajax({
+                url:"/updated_data",
+                type: "GET",
+                dataType: "json",
+                success: function(data){
+                var arr = data.split('~');
+                var pos = arr[2].replaceAll('Decimal(&#39;', '').replaceAll('&#39;)', '').replaceAll('[', '').replaceAll(']', '').replaceAll(' ', '');
+                var sunWindow = arr[3].replaceAll('Decimal(&#39;', '').replaceAll('&#39;)', '').replaceAll('[', '').replaceAll(']', '').replaceAll(' ', '');
+                var nums = pos.split(',');
+                var sunWindowArr = sunWindow.split(',')
+
+                var dates = arr[1].replaceAll('&#39;', '').replace('&#39;)', '').replaceAll('[', '').replaceAll(']', '').replace(/\n/ig, '');
+                var dateArr = dates.split(',');
+                console.log(dateArr);
+                    var azimuthData = {
+                        labels : [
+                            dateArr[0],
+                            dateArr[1],
+                            dateArr[2],
+                            dateArr[3],
+                            dateArr[4],
+                            dateArr[5],
+                            dateArr[6],
+                            dateArr[7],
+                            dateArr[8],
+                            dateArr[9]
+                        ],
+                        datasets : [{
+                            type: 'line',
+                label: "Azimuth",
+                backgroundColor: 'rgba(0,100,255,0.5)',
+                borderColor: 'rgba(0,100,255,1)',
+                borderWidth: 1,
+                            data : [
+                                Number(nums[0]),
+                                Number(nums[1]),
+                                Number(nums[2]),
+                                Number(nums[3]),
+                                Number(nums[4]),
+                                Number(nums[5]),
+                                Number(nums[6]),
+                                Number(nums[7]),
+                                Number(nums[8]),
+                                Number(nums[9])
+                            ]
+                            },
+                            {
+                            type: 'line',
+                label: "Sun in window",
+                backgroundColor: 'rgba(255,255,0,0.01)',
+                borderColor: 'rgba(255,255,0,1)',
+                borderWidth: 1,
+                            data : [
+                                Number(sunWindowArr[0]),
+                                Number(sunWindowArr[1]),
+                                Number(sunWindowArr[2]),
+                                Number(sunWindowArr[3]),
+                                Number(sunWindowArr[4]),
+                                Number(sunWindowArr[5]),
+                                Number(sunWindowArr[6]),
+                                Number(sunWindowArr[7]),
+                                Number(sunWindowArr[8]),
+                                Number(sunWindowArr[9])
+                            ]
+                            }
+	                    ]
+                    }
+                window.azimuthBar.data = azimuthData;
+                window.azimuthBar.update();
+                }
+           });
+        }, 2000);
+
+
     </script>
   </center>
   </center>
